@@ -51,7 +51,16 @@ public class CompanyController {
         employeeRepository.save(employee);
         companyRepository.save(company);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
 
+    @Transactional
+    @PutMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity update(@RequestBody Company company) {
+        company.getEmployeesList().stream().filter(employee -> employee.getCompany() == null).forEach(employee -> {
+            employee.setCompany(company);
+        });
+        companyRepository.save(company);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
 
