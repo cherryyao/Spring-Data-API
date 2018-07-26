@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @RestController
 @RequestMapping("/employees")
@@ -21,16 +22,11 @@ public class EmployeeController {
         return employeeRepository.save(employee);
     }
 
-//    @Transactional
-//    @PutMapping(path = "/{employee_id}/{company_id}",produces = MediaType.APPLICATION_JSON_VALUE)
-//    public Company setCompanyToEmployee(@PathVariable long employee_id,@PathVariable long company_id,@RequestBody Company company,@RequestBody Employee employee){
-//        if (company.getId().equals(company_id))
-//        {
-//            if (employee.getEmployee_id()==employee_id){
-//            employee.setCompany(company);
-//            return company;
-//        }
-//        }
-//        return null;
-//    }
+    @Transactional
+    @GetMapping(path = "",produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Employee> findAllEmployee() {
+        return employeeRepository.findAll();
+    }
+
+
 }
