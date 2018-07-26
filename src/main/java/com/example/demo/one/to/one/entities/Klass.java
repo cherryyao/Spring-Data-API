@@ -15,14 +15,21 @@ public class Klass {
     @CreatedDate
     private ZonedDateTime createdDate = ZonedDateTime.now();
 
+    @OneToOne(cascade = CascadeType.ALL,mappedBy = "klass",fetch = FetchType.LAZY)
+    private Leader leader;
 
-    private int classNum;
+    private int num;
+
+    public Leader getLeader() {
+        return leader;
+    }
 
     public Klass(){}
 
-    public Klass(Long id, int classNum) {
+    public Klass(Long id, int num,Leader leader) {
         this.id = id;
-        this.classNum = classNum;
+        this.num = num;
+        this.leader = leader;
     }
 
     public Long getId() {
@@ -33,12 +40,12 @@ public class Klass {
         this.id = id;
     }
 
-    public int getClassNum() {
-        return classNum;
+    public int getNum() {
+        return num;
     }
 
-    public void setClassNum(int classNum) {
-        this.classNum = classNum;
+    public void setNum(int num) {
+        this.num = num;
     }
 
     public ZonedDateTime getCreatedDate() {

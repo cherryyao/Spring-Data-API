@@ -1,11 +1,9 @@
 package com.example.demo.one.to.one.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.CreatedDate;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.ZonedDateTime;
 
 @Entity
@@ -15,7 +13,18 @@ public class Leader {
     private Long id;
     @CreatedDate
     private ZonedDateTime createdDate = ZonedDateTime.now();
-    private String leaderName;
+    private String name;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "klass_id")
+    @JsonIgnore
+    private Klass klass;
+
+    public Leader(Long id, String name, Klass klass) {
+        this.id = id;
+        this.name = name;
+        this.klass = klass;
+    }
+
 
     public Leader(Long id, ZonedDateTime createdDate) {
         this.id = id;
@@ -38,11 +47,19 @@ public class Leader {
         this.createdDate = createdDate;
     }
 
-    public String getLeaderName() {
-        return leaderName;
+    public String getName() {
+        return name;
     }
 
-    public void setLeaderName(String leaderName) {
-        this.leaderName = leaderName;
+    public void setName(String leaderName) {
+        this.name = name;
+    }
+
+    public Klass getKlass() {
+        return klass;
+    }
+
+    public void setKlass(Klass klass) {
+        this.klass = klass;
     }
 }
