@@ -30,11 +30,11 @@ public class CompanyController {
         return repository.save(company);
     }
 
-//    @Transactional
-//    @GetMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)
-//    public List<Company> findAll(){
-//        return repository.findAll();
-//    }
+    @Transactional
+    @GetMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Company> findAll(){
+        return repository.findAll();
+    }
 
 
 
