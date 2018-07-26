@@ -1,5 +1,7 @@
 package com.example.demo.one.to.n.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
@@ -17,6 +19,7 @@ public class Employee {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id")
+    @JsonIgnore
     private Company company;
 
     public Employee(){}
