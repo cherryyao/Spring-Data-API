@@ -1,5 +1,6 @@
 package com.example.demo.one.to.n.controllers;
 
+import com.example.demo.one.to.n.controllers.dto.CompanyDTO;
 import com.example.demo.one.to.n.entities.Company;
 import com.example.demo.one.to.n.entities.Employee;
 import com.example.demo.one.to.n.repositories.CompanyRepository;
@@ -62,6 +63,15 @@ public class CompanyController {
         companyRepository.save(company);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
+
+    @Transactional
+    @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public CompanyDTO get(@PathVariable("id")Long id) {
+        Company company = companyRepository.findById(id).get();
+        return new CompanyDTO(company);
+    }
+
+
 
 
 
