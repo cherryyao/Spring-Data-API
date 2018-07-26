@@ -77,7 +77,5 @@ public class CompanyController {
         companyRepository.delete(one);
         return one;
     }
-
-
 }
 
