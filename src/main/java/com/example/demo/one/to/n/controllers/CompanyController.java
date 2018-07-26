@@ -70,9 +70,13 @@ public class CompanyController {
         Company company = companyRepository.findById(id).get();
         return new CompanyDTO(company);
     }
-
-
-
+    @Transactional
+    @DeleteMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Company delete(@PathVariable("id")Long id) {
+        Company one = companyRepository.findById(id).get();
+        companyRepository.delete(one);
+        return one;
+    }
 
 
 }
