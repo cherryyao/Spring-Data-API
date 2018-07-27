@@ -26,8 +26,6 @@ public class KlassController {
        return klassRepositories.save(klass);
     }
 
-
-
     @Transactional
     @PutMapping(path = "/{klass_id}")
     public ResponseEntity addLeaderToClass(@PathVariable long id, @RequestBody Klass klass){
