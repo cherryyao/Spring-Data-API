@@ -34,7 +34,6 @@ public class EmployeeController {
     @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public EmployeeDTO get(@PathVariable("id") Long id) {
         Employee employee = employeeRepository.findById(id).get();
-        System.out.println(employee.getEmployee_id());
         return new EmployeeDTO(employee);
     }
 
@@ -45,6 +44,14 @@ public class EmployeeController {
         employeeRepository.delete(one);
         return one;
     }
+
+    @Transactional
+    @GetMapping(path = "/male",produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Employee> findByGender(){
+       return  employeeRepository.findByGender("male");
+    }
+
+
 
 
 
