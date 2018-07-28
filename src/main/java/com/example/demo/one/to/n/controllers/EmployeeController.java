@@ -30,12 +30,20 @@ public class EmployeeController {
         return employeeRepository.findAll();
     }
 
-    @Transactional
-    @GetMapping(path = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public EmployeeDTO findSpecificEmployee(@PathVariable Long id){
-        Employee employee = employeeRepository.findById(id).get();
-        return new EmployeeDTO(employee);
-    }
+//    @Transactional
+//    @GetMapping(path = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
+//    public EmployeeDTO findSpecificEmployee(@PathVariable("id") Long id){
+//        Employee employee = employeeRepository.findById(id).get();
+//        return new EmployeeDTO(employee);
+//    }
+
+@Transactional
+@GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+public EmployeeDTO get(@PathVariable("id")Long id) {
+    Employee employee = employeeRepository.findById(id).get();
+    System.out.println(employee.getEmployee_id());
+    return new EmployeeDTO(employee);
+}
 
 
 }

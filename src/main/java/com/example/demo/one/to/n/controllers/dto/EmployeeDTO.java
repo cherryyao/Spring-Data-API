@@ -24,6 +24,6 @@ public class EmployeeDTO {
     public EmployeeDTO(Employee employee) {
         this.id = employee.getEmployee_id();
         this.name = employee.getName();
-        this.companyId = employee.getCompany().getId();
+        this.companyId = employee.getCompany()!=null?employee.getCompany().getId():0;
     }
 }
