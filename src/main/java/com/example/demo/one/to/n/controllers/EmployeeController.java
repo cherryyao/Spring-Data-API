@@ -19,31 +19,36 @@ public class EmployeeController {
     private EmployeeRepository employeeRepository;
 
     @Transactional
-    @PostMapping(path = "",produces = MediaType.APPLICATION_JSON_VALUE)
-    public Employee save(@RequestBody Employee employee){
+    @PostMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Employee save(@RequestBody Employee employee) {
         return employeeRepository.save(employee);
     }
 
     @Transactional
-    @GetMapping(path = "",produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Employee> findAllEmployee() {
         return employeeRepository.findAll();
     }
 
-//    @Transactional
-//    @GetMapping(path = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
-//    public EmployeeDTO findSpecificEmployee(@PathVariable("id") Long id){
-//        Employee employee = employeeRepository.findById(id).get();
-//        return new EmployeeDTO(employee);
-//    }
+    @Transactional
+    @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public EmployeeDTO get(@PathVariable("id") Long id) {
+        Employee employee = employeeRepository.findById(id).get();
+        System.out.println(employee.getEmployee_id());
+        return new EmployeeDTO(employee);
+    }
 
-@Transactional
-@GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-public EmployeeDTO get(@PathVariable("id")Long id) {
-    Employee employee = employeeRepository.findById(id).get();
-    System.out.println(employee.getEmployee_id());
-    return new EmployeeDTO(employee);
-}
+    @Transactional
+    @DeleteMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Employee delete(@PathVariable("id")Long id) {
+        Employee one = employeeRepository.findById(id).get();
+        employeeRepository.delete(one);
+        return one;
+    }
+
+
+
+
 
 
 }
