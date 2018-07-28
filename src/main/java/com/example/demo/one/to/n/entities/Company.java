@@ -28,6 +28,10 @@ public class Company {
         this.name = name;
     }
 
+    public Company(String name) {
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }
