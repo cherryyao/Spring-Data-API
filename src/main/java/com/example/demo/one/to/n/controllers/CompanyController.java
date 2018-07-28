@@ -77,5 +77,15 @@ public class CompanyController {
         companyRepository.delete(one);
         return one;
     }
+
+    @Transactional
+    @GetMapping(path = "/{company_id}/employees", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Employee> getSpecificCompanyEmployee(@PathVariable long company_id){
+        Company company = companyRepository.findById(company_id).get();
+        System.out.println(company.getEmployeesList());
+        return company.getEmployeesList();
+    }
+
+
 }
 
